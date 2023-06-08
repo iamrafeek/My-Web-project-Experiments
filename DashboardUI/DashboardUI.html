@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...." crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="head-part">
+    <div class="dashboard-text">DASHBOARD</div>
+    <div id="search-input-container">
+        <i id="search-icon" class="fas fa-search"></i>
+        <input type="text" placeholder="Search" id="search-input">
+    </div>
+ 
+    <div class="notification-button">
+        <i class="fas fa-bell notification-icon"></i>
+    </div>
+ 
+    <div class="profile-botton">
+        <div class="botton-text">Profile</div>
+    </div>
+        
+  </div>
+
+  <div class="content-part">
+
+ 
+  <table style="width:100vw">
+    <tr>
+        <td>
+            <div class="content-part-left">
+              <br><br>
+              <center>
+              <div class="common-botton">
+                <div class="botton-text">Home</div>
+              </div>
+              <br>
+              <div class="commona-botton">
+                <div class="botton-text">DashBoard</div>
+              </div>
+              </center>
+              <br><br><br><br><br><br><br><br>
+              <hr>
+              <br>
+              <center>
+                              <table>
+                                <tr><td>
+                                <h2>Patient Details</h2>
+                                </td></tr>
+                                </table>
+             </center>
+                                <br>
+                                
+                                <table>
+                                <tr><td><strong>Name:</strong></td><td><span id="patient-name"></span></td></tr>
+                                <tr><td><strong>Age:</strong></td><td><span id="patient-age"></span></td></tr>
+                                <tr><td><strong>Gender:</strong></td><td><span id="patient-gender"></span></td></tr>
+                                <tr><td><strong>Education:</strong></td><td><span id="patient-education"></span></td></tr>
+                                <tr><td><strong>Job Title:</strong></td><td><span id="patient-jobtitle"></span></td></tr>
+                                <tr><td><strong>Marital Status:</strong></td><td><span id="patient-maritalstatus"></span></td></tr>
+                                <tr><td><strong>District:</strong></td><td><span id="patient-district"></span></td></tr>
+                                <tr><td><strong>Mobile Number:</strong></td><td><span id="patient-mobilenumber"></td></tr>
+                                <tr><td><strong>Email Address</strong></td><td><span id="patient-emailaddress"></span></td></tr>
+                                                          
+                               </table>
+                               
+                                
+                             
+                              
+                              <script>
+                                
+                                function fetchPatientDetails(patientNumber) {
+                                  const date = document.getElementById('datePicker').value;
+                
+                                  fetch(`http://127.0.0.1:5000/personal_details/${date}/${patientNumber}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                      const patientNameSpan = document.getElementById('patient-name');
+                                      const patientAgeSpan = document.getElementById('patient-age');
+                                      const patientGenderSpan = document.getElementById('patient-gender');
+                                      const patientEducationSpan = document.getElementById('patient-education');
+                                      const patientJobTitleSpan = document.getElementById('patient-jobtitle');
+                                      const patientMaritalStatusSpan = document.getElementById('patient-maritalstatus');
+                                      const patientDistrictSpan = document.getElementById('patient-district');
+                                      const patientMobileNumberSpan = document.getElementById('patient-mobilenumber');
+                                      const patientEmailAddressSpan = document.getElementById('patient-emailaddress');
+                                      patientNameSpan.textContent = data[0]["name"];
+                                      patientAgeSpan.textContent = data[0]["age"];
+                                      patientGenderSpan.textContent = data[0]["gender"];
+                                      patientEducationSpan.textContent = data[0]["education"];
+                                      patientJobTitleSpan.textContent = data[0]["job_title"];
+                                      patientMaritalStatusSpan.textContent = data[0]["marital_status"];
+                                      patientDistrictSpan.textContent = data[0]["district"];
+                                      patientMobileNumberSpan.textContent = data[0]["mobile_number"];
+                                      patientEmailAddressSpan.textContent = data[0]["email_address"];
+                                    })
+                                    .catch(error => {
+                                      console.error(error);
+                                    });
+                                }
+                              </script>
+            </div>
+        </td>
+        <td>
+            <div class="content-part-right">
+              <div class="date-part">
+                <input style="background-color:#edf7fd;border:none;height:30px;" type="date" id="datePicker" onchange="fetchUserCount()" value="">
+              </div>
+              <div class="stat-part">
+               <table style="width:80vw;">
+               <tr>
+                <td>
+                  <div class="stat-part1">
+                    <table style="width:60vw;">
+                      <tr>
+                       <td>
+                         <div class="statv-part1">
+                          
+                          <table>
+                            <tr><td><div class="stat-text">3</div></td></tr>
+                            <tr><td><div class="stat-text">Patients</div></td></tr>
+                          </table>
+
+                         </div>
+                       </td>
+                       <td>
+                         <div class="statv-part2">
+
+                          <table>
+                            <tr><td><div class="stat-text"><span id="usercount"></span></div></td></tr>
+                            <tr><td><div class="stat-text">Patients Today</div></td></tr>
+                          </table>
+                          
+                          
+                          
+                          
+                          
+                          
+                      
+      
+                      <script>
+                        function fetchUserCount() {
+                         const selectedDate = document.getElementById('datePicker').value;
+                         const userCountSpan = document.getElementById('usercount');
+                              
+                        fetch(`http://127.0.0.1:5000/count_users_chatted/${selectedDate}`)
+                          .then(response => response.text())
+                          .then(data => {
+                               userCountSpan.textContent = data;
+                                        })
+                          .catch(error => {
+                            console.error(error);
+                                          });
+                          }
+                          
+                          // Set the value of date input field to the current date
+                          const currentDate = new Date().toISOString().split('T')[0];
+                          document.getElementById('datePicker').value = currentDate;
+                          
+                          // Fetch user count for current date on page load
+                          document.addEventListener('DOMContentLoaded', () => {
+                              fetchUserCount();
+                          });
+                      </script>
+                      
+                         </div>
+                       </td>
+                      </tr>
+                      </table>
+                  </div>
+                </td>
+                <td>
+                  <div class="stat-part2">
+                    <center>
+                    <table style="height:30vh;">
+                      <tr><td>
+                        <div class="statw-part1">
+                          <table>
+                            <tr><td><div class="stat-text">0</div></td></tr>
+                            <tr><td><div class="stat-text">Severe</div></td></tr>
+                          </table>
+                        </div></td>
+                      </tr>
+                      <tr><td>
+                        <div class="statw-part2">
+                          <table>
+                            <tr><td><div class="stat-text1">0</div></td></tr>
+                            <tr><td><div class="stat-text1">Normal</div></td></tr>
+                          </table>
+                        </div></td>
+                      </tr>
+                    </table>
+                    </center>
+                  </div>
+                </td>
+               </tr>
+               </table>
+              </div>
+
+                    <div class="patient-part">
+                      <center>
+                        <table style="width:80vw;">
+                          <tr>
+                            <td><div class="patient-part1">
+                              <h2>Patient Chat History</h2>
+                              <br>
+                              <div id="chathistory"></div>
+                            
+                              <script>
+                                function fetchChatHistory(patientNumber) {
+                                    const selectedDate = document.getElementById('datePicker').value;
+                                    const chatHistoryDiv = document.getElementById('chathistory');
+                                    
+                                    // Fetch chat history from the API
+                                    fetch(`http://127.0.0.1:5000/extract_chat_history/${selectedDate}/${patientNumber}`)
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            const formattedData = data.replace(/\n/g, "<br>");
+                                            
+                                            // Fetch keywords from the API
+                                            fetch(`http://127.0.0.1:5000/extract_keywords/${selectedDate}/${patientNumber}`)
+                                                .then(response => response.json())
+                                                .then(keywords => {
+                                                    const highlightedData = highlightKeywords(formattedData, keywords);
+                                                    chatHistoryDiv.innerHTML = highlightedData;
+                                                })
+                                                .catch(error => {
+                                                    console.error(error);
+                                                });
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                }
+                            
+                                function highlightKeywords(data, keywords) {
+                                    // Add HTML <mark> tags to highlight keywords
+                                    keywords.forEach(keyword => {
+                                      const regex = new RegExp(`(\\b|\\/\\/)${keyword}\\b`, 'gi');
+                                      
+                                        data = data.replace(regex, `<mark>${keyword}</mark>`);
+                                    });
+                            
+                                    return data;
+                                }
+                            </script>
+                            
+
+
+                            </div></td>
+                            <td><div class="patient-part2">
+
+                              <botton onclick="fetchPatientDetails(1),fetchChatHistory(1)" class="patient-botton">
+                                <div class="botton-text">Patient 1</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(2),fetchChatHistory(2)" class="patient-botton">
+                                <div class="botton-text">Patient 2</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(3),fetchChatHistory(3)" class="patient-botton">
+                                <div class="botton-text">Patient 3</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(4),fetchChatHistory(4)" class="patient-botton">
+                                <div class="botton-text">Patient 4</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(5),fetchChatHistory(5)" class="patient-botton">
+                                <div class="botton-text">Patient 5</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(6),fetchChatHistory(6)" class="patient-botton">
+                                <div class="botton-text">Patient 6</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(7),fetchChatHistory(7)" class="patient-botton">
+                                <div class="botton-text">Patient 7</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(8),fetchChatHistory(8)" class="patient-botton">
+                                <div class="botton-text">Patient 8</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(9),fetchChatHistory(9)" class="patient-botton">
+                                <div class="botton-text">Patient 9</div>
+                              </botton>
+
+                              <botton onclick="fetchPatientDetails(10),fetchChatHistory(10)" class="patient-botton">
+                                <div class="botton-text">Patient 10</div>
+                              </botton>
+
+                            </div></td>
+                          </tr>
+                        </table>
+                      </center>
+
+                    </div>
+
+            </div>
+        </td>
+    </tr>
+  </table>
+</div>
+        </body>
+        </html>

@@ -1,0 +1,125 @@
+<html>
+<style>
+
+ul {
+  width:1200px;
+  list-style-type: none;
+  margin:auto;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #29C5F6;
+}
+
+div.a
+{
+width:1200px;
+height:150px;
+background-color:white;
+color:#29cf6;
+text-align:center;
+border-radius:20px 20px 0px 0px;
+margin:auto;
+}
+
+div.sub
+{
+width:1200px;
+height:30px;
+background-color:white;
+border-top:1px solid grey;
+border-bottom:1px solid grey;
+color:black;
+text-align:center;
+margin:auto;
+}
+
+
+div.main
+{
+width:1200px;
+height:450px;
+background-color:white;
+color:#29cf6;
+text-align:left;
+margin:auto;
+}
+
+
+</style>
+
+<body background="img\1.jpg" 
+style=
+"
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+"
+>
+<div class="a">
+
+<br>
+<br>
+<br>
+
+<font color="#29C5F6" size="40px"><b>Kollam Tourism</b></font>
+
+</div>
+
+
+<div class="sub">
+<marquee>
+Escape to a world of pristine beaches, tropical rainforests, and vibrant culture - a paradise waiting to be explored.
+Indulge in the ultimate adventure as you hike through rugged mountains, explore hidden caves, and soak in natural hot springs.
+Experience the magic of our historic cities, where ancient architecture meets modern luxury, and every corner tells a fascinating story.
+Savor the flavors of our local cuisine, from farm-to-table delicacies to street food favorites, each bite a tantalizing journey for the taste buds.
+Unwind in the tranquility of our serene countryside, where rolling hills and winding rivers provide a peaceful escape from the hustle and bustle of everyday life.
+</marquee>
+</div>
+
+<ul>
+  <li><a class="active" href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'heritage' %}">Heritage</a></li>
+  <li><a href="{% url 'hotelbooking' %}">Hotel Booking</a></li>
+  <li><a href="{% url 'gallery' %}">Gallery</a></li>
+
+  <li style="float:right"><a href="{% url 'contact' %}">Contact</a></li>
+</ul>
+
+<div class="main">
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+<font color="#29C5F6" style="font-size:30px">CALL +91 8157893552</font>
+</center>
+
+
+</div>
+<footer style="width:1200px;margin:auto;background:grey; color:white;text-align:center;">
+  <p><br>&copy; Company, Ltd. All Rights Reserved.</p>
+</footer>
+
+
+</body>
+</html>

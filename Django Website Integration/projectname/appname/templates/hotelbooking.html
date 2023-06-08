@@ -1,0 +1,177 @@
+<html>
+<style>
+
+ul {
+  width:1200px;
+  list-style-type: none;
+  margin:auto;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #29C5F6;
+}
+
+div.a
+{
+width:1200px;
+height:150px;
+background-color:white;
+color:#29cf6;
+text-align:center;
+border-radius:20px 20px 0px 0px;
+margin:auto;
+}
+
+div.sub
+{
+width:1200px;
+height:30px;
+background-color:white;
+border-top:1px solid grey;
+border-bottom:1px solid grey;
+color:black;
+text-align:center;
+margin:auto;
+}
+
+
+div.main
+{
+width:1200px;
+height:500px;
+background-color:white;
+color:#29cf6;
+text-align:left;
+margin:auto;
+}
+
+  
+
+img 
+{
+    width: 200px;
+    height: 200px;
+    transition: all 0.5s; 
+}
+  
+img:hover 
+{
+    width: 220px;
+    height: 220px;
+}
+
+
+</style>
+
+<body background="img\1.jpg" 
+style=
+"
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+"
+>
+<div class="a">
+
+<br>
+<br>
+<br>
+
+<font color="#29C5F6" size="40px"><b>Kollam Tourism</b></font>
+
+</div>
+
+
+<div class="sub">
+<marquee>
+Escape to a world of pristine beaches, tropical rainforests, and vibrant culture - a paradise waiting to be explored.
+Indulge in the ultimate adventure as you hike through rugged mountains, explore hidden caves, and soak in natural hot springs.
+Experience the magic of our historic cities, where ancient architecture meets modern luxury, and every corner tells a fascinating story.
+Savor the flavors of our local cuisine, from farm-to-table delicacies to street food favorites, each bite a tantalizing journey for the taste buds.
+Unwind in the tranquility of our serene countryside, where rolling hills and winding rivers provide a peaceful escape from the hustle and bustle of everyday life.
+</marquee>
+</div>
+
+<ul>
+  <li><a class="active" href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'heritage' %}">Heritage</a></li>
+  <li><a href="{% url 'hotelbooking' %}">Hotel Booking</a></li>
+  <li><a href="{% url 'gallery' %}">Gallery</a></li>
+
+  <li style="float:right"><a href="{% url 'contact' %}">Contact</a></li>
+</ul>
+
+<div class="main">
+<br>
+&nbsp
+
+<font color="#29C5F6" style="font-size:30px"><u>Hotel Booking Form</u></font>
+<br>
+<br>
+<form>
+&nbsp&nbsp
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required><br><br>
+&nbsp&nbsp
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required><br><br>
+&nbsp&nbsp
+<label for="phone">Phone:</label>
+<input type="tel" id="phone" name="phone" required><br><br>
+&nbsp&nbsp
+<label for="checkin">Check-in Date:</label>
+<input type="date" id="checkin" name="checkin" required><br><br>
+&nbsp&nbsp
+<label for="checkout">Check-out Date:</label>
+<input type="date" id="checkout" name="checkout" required><br><br>
+&nbsp&nbsp
+<label for="roomtype">Room Type:</label>
+<select id="roomtype" name="roomtype" required><br>
+<option value="">-- Select Room Type --</option>
+<option value="single">Single Room</option>
+<option value="double">Double Room</option>
+<option value="suite">Suite</option>
+</select>
+<br><br>
+&nbsp&nbsp
+<label for="numadults">Number of Adults:</label>
+<input type="number" id="numadults" name="numadults" required><br><br>
+&nbsp&nbsp
+<label for="numchildren">Number of Children:</label>
+<input type="number" id="numchildren" name="numchildren" required><br><br>
+&nbsp&nbsp
+<label for="comments">Comments:</label>
+<textarea id="comments" name="comments"></textarea><br><br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<input type="submit" value="Submit">
+</form>
+
+</div>
+<footer style="width:1200px;margin:auto;background:grey; color:white;text-align:center;">
+  <p><br>&copy; Company, Ltd. All Rights Reserved.</p>
+</footer>
+
+
+</body>
+</html>
